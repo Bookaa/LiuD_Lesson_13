@@ -211,21 +211,25 @@ def make_func1(liul):
     f.block.Return(LiuL.ConstantInt(55))
 
     return f
-
-def test1():
-    liul = LiuL()
-    f = make_func1(liul)
-    result = liul.run(f, [5,7])
-    print result.val
-
     '''
-def func1(b1, b2):
-    i = 3
-    j = i + 2
-    print i+j*2, b2
-    return 55
-    '''
+    def func1(b1, b2):
+        i = 3
+        j = i + 2
+        print(i+j*2, b2)
+        return 55
+        '''
+
+import unittest
+class Test(unittest.TestCase):
+    def test1(self):
+        liul = LiuL()
+        f = make_func1(liul)
+        result = liul.run(f, [5,7])
+        print result.val
+        self.assertEqual(result.val, 55)
+
 
 if __name__ == '__main__':
-    test1()
+    the = Test(methodName='test1')
+    the.test1()
     print 'good'
